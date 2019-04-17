@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="mainscene" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="450.0" minWidth="-Infinity" prefHeight="630.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ChatSceneController">
+   <center>
+      <ScrollPane minHeight="400.0" minWidth="-Infinity" prefHeight="535.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+         <content>
+            <VBox fx:id="msgcontainer" fillWidth="false" minWidth="-Infinity" prefWidth="398.0" style="-fx-background-color: #aaaaaa;" />
+         </content>
+      </ScrollPane>
+   </center>
+   <top>
+      <HBox fx:id="title" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnback" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnbackclicked" prefHeight="40.0" prefWidth="40.0" text="Button" />
+            <Label fx:id="friendname" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" prefHeight="40.0" text="Friend Name">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <MenuButton fx:id="dropdownmenu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="MenuButton">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Action 1" />
+                <MenuItem mnemonicParsing="false" text="Action 2" />
+              </items>
+            </MenuButton>
+         </children>
+      </HBox>
+   </top>
+   <bottom>
+      <VBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="55.0" prefWidth="560.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0">
+               <children>
+                  <TextField fx:id="msgtextfield" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="40.0" prefWidth="360.0" />
+                  <Button fx:id="btnsendmsg" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnsendmsgclicked" prefHeight="40.0" prefWidth="40.0" text="Button" />
+               </children></HBox>
+            <HBox prefHeight="15.0" prefWidth="400.0">
+               <children>
+                  <Label fx:id="notificationinfo" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </bottom>
+</BorderPane>

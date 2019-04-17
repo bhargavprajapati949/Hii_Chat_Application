@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane fx:id="pane" onMouseDragged="#onMouseDragged" onMousePressed="#onMousePressed" prefHeight="300.0" prefWidth="450.0" style="-fx-background-color: #cdcdcd;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PreloaderSceneController">
+   <children>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="156.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/logo.png" />
+         </image></ImageView>
+      <ImageView fitHeight="81.0" fitWidth="86.0" layoutX="182.0" layoutY="201.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/loading.gif" />
+         </image>
+      </ImageView>
+      <Label layoutX="200.0" layoutY="238.0" text="Loading..." />
+      <Label fx:id="loadingstatus" layoutX="12.0" layoutY="276.0" prefHeight="21.0" prefWidth="426.0" />
+   </children>
+   <cursor>
+      <Cursor fx:constant="DEFAULT" />
+   </cursor>
+</AnchorPane>

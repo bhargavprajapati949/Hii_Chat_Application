@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<AnchorPane maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="555.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox layoutX="108.0" layoutY="-43.0" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="555.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
