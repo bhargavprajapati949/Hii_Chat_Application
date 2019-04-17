@@ -94,7 +94,6 @@ public class ForgetPasswordSceneController implements Initializable {
 
     @FXML
     void btnsubmitclicked(){
-        //todo complete forget password submit btn code
         if(!(vldsecque && vldsecqueans && vldconpassword)){
             varifyusernamefield();
             varifyconpasswordfield();
@@ -103,8 +102,8 @@ public class ForgetPasswordSceneController implements Initializable {
         }
         else {
             if(!IsConnectedToInternet.check()){
-                notification = "You are offline";
-                //todo show notification
+                notificationtext = "You are offline";
+                errornotification.setText(notificationtext);
             }
             else {
                 try {

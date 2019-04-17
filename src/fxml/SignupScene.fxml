@@ -19,7 +19,7 @@
       </Label>
       <AnchorPane layoutX="435.0" layoutY="85.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="508.0" prefWidth="530.0" style="-fx-background-color: #ececec; -fx-background-radius: 10;">
          <children>
-            <ScrollPane hbarPolicy="NEVER" layoutX="14.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pannable="true" prefHeight="560.0" prefWidth="530.0" style="-fx-background-color: #d4d4d4; -fx-background-radius: 10;" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <ScrollPane hbarPolicy="NEVER" layoutX="14.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pannable="true" prefHeight="560.0" prefWidth="530.0" style="-fx-background-color: #d4d4d4; -fx-background-radius: 10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <padding>
                   <Insets bottom="10.0" left="30.0" right="10.0" top="10.0" />
                </padding>
@@ -183,5 +183,6 @@
             <Image url="@../images/logo.png" />
          </image>
       </ImageView>
+      <Label fx:id="notificationinfo" layoutX="25.0" layoutY="661.0" />
    </children>
 </AnchorPane>

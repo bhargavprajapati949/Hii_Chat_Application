@@ -33,4 +33,7 @@ public class PatternValidation {
         }
     }
 
+    public static boolean checkspace(String samplestr){
+        return !samplestr.matches("^\\S+$");
+    }
 }

@@ -62,7 +62,7 @@ public class SceneController extends Application {
         }
         else{
             if(sqlcon == null){
-                notification += "Internet is off.\n";
+                notificationtext += "Internet is off.\n";
                 iserror = false;
                 errormsg = "";
             }
@@ -70,53 +70,50 @@ public class SceneController extends Application {
 
         //Fetching graphics data
         notifyPreloader(new ProgressNotification("Fetching graphics data..."));
-        if(!islogin){
-            if(!(IsConnectedToInternet.check())){
-                iserror = true;
-                errormsg += "Please turn on your internet connection.\n";
-            }
-            else {
-                try{
-                    FXMLLoader welcomeLoader = new FXMLLoader(getClass().getResource("fxml/WelcomeScene.fxml"));
-                    FXMLLoader signupLoader = new FXMLLoader(getClass().getResource("fxml/SignupScene.fxml"));
-                    FXMLLoader signinLoader = new FXMLLoader(getClass().getResource("fxml/SigninScene.fxml"));
-                    FXMLLoader forgetpasswordLoader = new FXMLLoader(getClass().getResource("fxml/ForgetPasswordScene.fxml"));
+        try{
+            FXMLLoader welcomeLoader = new FXMLLoader(getClass().getResource("fxml/WelcomeScene.fxml"));
+            FXMLLoader signupLoader = new FXMLLoader(getClass().getResource("fxml/SignupScene.fxml"));
+            FXMLLoader signinLoader = new FXMLLoader(getClass().getResource("fxml/SigninScene.fxml"));
+            FXMLLoader forgetpasswordLoader = new FXMLLoader(getClass().getResource("fxml/ForgetPasswordScene.fxml"));
 
-                    welcomeScene = new Scene(welcomeLoader.load());
-                    signupScene = new Scene(signupLoader.load());
-                    signinScene = new Scene(signinLoader.load());
-                    forgetPasswordScene = new Scene(forgetpasswordLoader.load());
+            welcomeScene = new Scene(welcomeLoader.load());
+            signupScene = new Scene(signupLoader.load());
+            signinScene = new Scene(signinLoader.load());
+            forgetPasswordScene = new Scene(forgetpasswordLoader.load());
 
-                    welcomeSceneController = welcomeLoader.getController();
-                    signupSceneController = signupLoader.getController();
-                    signinSceneController = signinLoader.getController();
-                    forgetPasswordSceneController = forgetpasswordLoader.getController();
+            welcomeSceneController = welcomeLoader.getController();
+            signupSceneController = signupLoader.getController();
+            signinSceneController = signinLoader.getController();
+            forgetPasswordSceneController = forgetpasswordLoader.getController();
 
-                }
-                catch (IOException e){
-                    e.printStackTrace();
-                    //todo handle exception
-                    iserror = true;
-                    errormsg = "Application source corrupted. Please reinstall application.\n";
-                    return;
-                }
-
-            }
         }
-
+        catch (IOException e){
+            e.printStackTrace();
+            //todo handle exception
+            iserror = true;
+            errormsg = "Application source corrupted. Please reinstall application.\n";
+            return;
+        }
 
         //load scene
 
         try {
             FXMLLoader friendlistLoader = new FXMLLoader(getClass().getResource("fxml/FriendlistScene.fxml"));
             FXMLLoader chatLoader = new FXMLLoader(getClass().getResource("fxml/ChatScene.fxml"));
+            FXMLLoader settingLoader = new FXMLLoader(getClass().getResource("fxml/SettingScene.fxml"));
+            FXMLLoader profileLoader = new FXMLLoader(getClass().getResource("fxml/ProfileScene.fxml"));
 
             friendlistScene = new Scene(friendlistLoader.load());
             chatScene = new Scene(chatLoader.load());
+            settingScene = new Scene(settingLoader.load());
+            profileScene = new Scene(profileLoader.load());
 
 
             friendlistSceneController = friendlistLoader.getController();
             chatSceneController = chatLoader.getController();
+            settingSceneController = settingLoader.getController();
+            profileSceneController = profileLoader.getController();
+
         } catch (IOException e) {
             e.printStackTrace();
             //TODO fxml file error

@@ -18,15 +18,13 @@
       <HBox fx:id="title" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" prefWidth="400.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="btnback" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnbackclicked" prefHeight="40.0" prefWidth="40.0" text="Button" />
-            <Label fx:id="friendname" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" prefHeight="40.0" text="Friend Name">
+            <Label fx:id="friendname" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" onMouseClicked="#friendnamelabelclicked" prefHeight="40.0" text="Friend Name">
                <font>
                   <Font size="30.0" />
                </font>
             </Label>
             <MenuButton fx:id="dropdownmenu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="MenuButton">
               <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-                <MenuItem mnemonicParsing="false" text="Action 2" />
               </items>
             </MenuButton>
          </children>

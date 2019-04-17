@@ -1,11 +1,10 @@
 package controllers;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -47,6 +46,8 @@ public class ChatSceneController implements Initializable {
     @FXML
     Label notificationinfo;
 
+    MenuItem clearchat;
+
     @FXML
     void btnbackclicked(){
         primaryStage.setScene(friendlistScene);
@@ -56,8 +57,8 @@ public class ChatSceneController implements Initializable {
     void btnsendmsgclicked(){
         if(!PatternValidation.isnull(msgtextfield.getText())){
             if(!IsConnectedToInternet.check()){
-                notification = "You are offline.";
-                //todo show notification to status bar
+                notificationtext = "You are offline.";
+                notificationinfo.setText(notificationtext);
             }
             else {
                 try {
@@ -67,8 +68,8 @@ public class ChatSceneController implements Initializable {
                     msgtextfield.setText("");
                 } catch (SQLException e) {
                     e.printStackTrace();
-                    notification = "Cannot connect to server.";
-                    //todo show notification
+                    notificationtext = "Cannot connect to server.";
+                    notificationinfo.setText(notificationtext);
                     //todo handle msg send on offline condition
                 }
 
@@ -77,8 +78,11 @@ public class ChatSceneController implements Initializable {
 
     }
 
-
-
+    @FXML
+    void friendnamelabelclicked(){
+        profileSceneController.fatchfrienddetail();
+        primaryStage.setScene(profileScene);
+    }
 
     @SuppressWarnings("Duplicates")
     private void savemsgtolocaldb() throws SQLException {
@@ -106,13 +110,22 @@ public class ChatSceneController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         //dropdownmenu.getItems().addAll();
         title.setHgrow(friendname, Priority.ALWAYS);
-        loadmsgtoscene();
+        clearchat = new MenuItem("Clear Chat");
+        dropdownmenu.getItems().addAll(clearchat);
 
-
-    }
-
-    private void loadmsgtoscene() {
-
+        clearchat.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                String query = "delete from MSG_" + currentfriendusername;
+                try {
+                    h2statement.executeUpdate(query);
+                    loadchatscene();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    //todo handle sql exception
+                }
+            }
+        });
     }
 
 

@@ -17,7 +17,7 @@ public class GlobleVariables {
     public static Statement h2statement;
     public static Statement sqlstatement;
 
-    public static String notification = "";
+    public static String notificationtext = "";
     public static Boolean iserror = false;
     public static String errormsg = "";
 
@@ -33,6 +33,8 @@ public class GlobleVariables {
     public static Scene forgetPasswordScene;
     public static Scene friendlistScene;
     public static Scene chatScene;
+    public static Scene settingScene;
+    public static Scene profileScene;
 
     public static WelcomeSceneController welcomeSceneController;
     public static SignupSceneController signupSceneController;
@@ -40,6 +42,8 @@ public class GlobleVariables {
     public static ForgetPasswordSceneController forgetPasswordSceneController;
     public static FriendListSceneController friendlistSceneController;
     public static ChatSceneController chatSceneController;
+    public static SettingSceneController settingSceneController;
+    public static ProfileSceneController profileSceneController;
 
     public static String myusername;
 

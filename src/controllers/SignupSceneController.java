@@ -71,6 +71,9 @@ public class SignupSceneController implements Initializable {
     @FXML
     Label secqueanslabel;
 
+    @FXML
+    Label notificationinfo;
+
     Boolean vldname = false;
     Boolean vldusername = false;
     Boolean vldgender = false;
@@ -171,6 +174,10 @@ public class SignupSceneController implements Initializable {
             namelabel.setText("Name cannot be empty.");
             vldname = false;
         }
+        else if(namefield.getText().length() > 30){
+            namelabel.setText("Name should not exceed 30 characters.");
+            vldname = false;
+        }
         else {
             namelabel.setText("");
             vldname = true;
@@ -181,6 +188,16 @@ public class SignupSceneController implements Initializable {
         try {
             if(PatternValidation.isnull(usernamefield.getText())){
                 usernamelabel.setText("Username cannot be empty.");
+                usernamelabel.setStyle("-fx-text-fill: red");
+                vldusername = false;
+            }
+            else if(PatternValidation.checkspace(usernamefield.getText())){
+                usernamelabel.setText("Username should not contain space.");
+                usernamelabel.setStyle("-fx-text-fill: red");
+                vldusername = false;
+            }
+            else if(usernamefield.getText().length() > 30){
+                usernamelabel.setText("Username should not exceed 30 characters.");
                 usernamelabel.setStyle("-fx-text-fill: red");
                 vldusername = false;
             }
@@ -233,6 +250,10 @@ public class SignupSceneController implements Initializable {
             emailidlabel.setText("Email Id is not valid.");
             vldemailid = false;
         }
+        else if(emailidfield.getText().length() > 50){
+            emailidlabel.setText("Email should not exceed 50 characters.");
+            vldemailid = false;
+        }
         else {
             emailidlabel.setText("");
             vldemailid = true;
@@ -247,6 +268,11 @@ public class SignupSceneController implements Initializable {
         }
         else if(PatternValidation.isnull(conpasswordfield.getText())){
             passwordlabel.setText("Password cannot be empty.");
+            conpasswordlabel.setText("");
+            vldconpassword = false;
+        }
+        else if(conpasswordfield.getText().length() > 30){
+            passwordlabel.setText("Password should not exceed 30 characters.");
             conpasswordlabel.setText("");
             vldconpassword = false;
         }
@@ -271,6 +297,10 @@ public class SignupSceneController implements Initializable {
     void varifysecqueansfield(){
         if(PatternValidation.isnull(secqueansfield.getText())){
             secqueanslabel.setText("Answer cannot be empty.");
+            vldsecqueans = false;
+        }
+        else if(secqueansfield.getText().length() > 30){
+            secqueanslabel.setText("Answer should not exceed 30 characters.");
             vldsecqueans = false;
         }
         else {
@@ -325,8 +355,8 @@ public class SignupSceneController implements Initializable {
         }
         else{
             if(!IsConnectedToInternet.check()){
-                notification = "You are offline";
-                //todo show notification
+                notificationtext = "You are offline";
+                notificationinfo.setText(notificationtext);
             }
             else {
                 try {
@@ -339,7 +369,8 @@ public class SignupSceneController implements Initializable {
                 } catch (SQLException e) {
                     e.printStackTrace();
                     //todo handle sql exception
-                    notification = "Cannot reach to server. Please try after sometime.";
+                    notificationtext = "Cannot reach to server. Please try after sometime.";
+                    notificationinfo.setText(notificationtext);
                 }
                 clearall();
                 signinSceneController.clearall();
@@ -363,7 +394,7 @@ public class SignupSceneController implements Initializable {
     }
 
     private void createusersfriendlisttableonserver() throws SQLException {
-        String query = "create table " + userfriendlisttablename + "( fname varchar (30), fusername varchar (30), gender varchar (12), priority int (255), mobileno varchar (10), emailid varchar (30))";
+        String query = "create table " + userfriendlisttablename + "( fname varchar (30), fusername varchar (30), gender varchar (12), priority int (255), mobileno varchar (10), emailid varchar (50))";
         sqlstatement.executeUpdate(query);
     }
 

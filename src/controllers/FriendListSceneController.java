@@ -42,6 +42,7 @@ public class FriendListSceneController implements Initializable {
     MenuItem addfriendmenuitem;
     MenuItem settingmenuitem;
     MenuItem signoutmenuitem;
+    MenuItem minimizemenuitem;
 
     @FXML
     VBox friendnamevbox;
@@ -53,9 +54,11 @@ public class FriendListSceneController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         addfriendmenuitem = new MenuItem("Add Friend");
+        minimizemenuitem = new MenuItem("Minimize app");
         settingmenuitem  = new MenuItem("Setting");
         signoutmenuitem = new MenuItem("Sign Out");
-        dropdownmenu.getItems().addAll(addfriendmenuitem, settingmenuitem, signoutmenuitem);
+
+        dropdownmenu.getItems().addAll(addfriendmenuitem, minimizemenuitem, settingmenuitem, signoutmenuitem);
         title.setHgrow(titlelabel, Priority.ALWAYS);
 
         reloadfriendlist();
@@ -74,6 +77,20 @@ public class FriendListSceneController implements Initializable {
                     e.printStackTrace();
                 }
 
+            }
+        });
+
+        minimizemenuitem.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                primaryStage.setIconified(true);
+            }
+        });
+
+        settingmenuitem.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                primaryStage.setScene(settingScene);
             }
         });
 

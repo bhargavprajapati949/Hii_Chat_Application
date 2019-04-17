@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxWidth="-Infinity" minHeight="400.0" minWidth="-Infinity" prefHeight="625.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SettingSceneController">
+   <top>
+      <HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnback" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnbackclicked" prefHeight="40.0" prefWidth="40.0" text="Button" />
+            <Label text="Settings">
+               <font>
+                  <Font size="30.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <ScrollPane minWidth="-Infinity" prefHeight="570.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+         <content>
+            <VBox prefHeight="200.0" prefWidth="398.0">
+               <children>
+                  <AnchorPane fx:id="myprofiletab" minWidth="-Infinity" prefWidth="398.0">
+                     <children>
+                        <Label layoutX="68.0" layoutY="5.0" text="My Profile">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0">
+                           <image>
+                              <Image url="@../images/profile_icon.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="myprofiletab1" minWidth="-Infinity" prefWidth="398.0">
+                     <children>
+                        <Label layoutX="68.0" layoutY="5.0" text="Set Always on top ">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <CheckBox fx:id="alwaysontop" layoutX="356.0" layoutY="11.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="15.0" prefWidth="15.0">
+                           <font>
+                              <Font />
+                           </font>
+                        </CheckBox>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </center>
+   <bottom>
+      <HBox maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="16.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="notificationinfo" alignment="TOP_CENTER" text="Label">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>

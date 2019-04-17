@@ -90,8 +90,8 @@ public class AddFriendSceneController implements Initializable {
         }
         else {
             if (!IsConnectedToInternet.check()) {
-                notification = "You are offline.";
-                //todo show notification
+                notificationtext = "You are offline.";
+                errorlabel.setText(notificationtext);
             } else {
                 String query = "select * from USERINFO where username=";
                 query += "'" + fusernamefield.getText().toUpperCase() + "'";

@@ -60,10 +60,10 @@ public class ConnectH2Database {
 
             //Personal Information
             h2statement.executeUpdate("alter table USERINFO ADD name varchar(30)");
-            h2statement.executeUpdate("alter table USERINFO ADD username varchar(20)");
+            h2statement.executeUpdate("alter table USERINFO ADD username varchar(30)");
             h2statement.executeUpdate("alter table USERINFO ADD gender varchar(12)");
             h2statement.executeUpdate("alter table USERINFO ADD mobileno varchar(10)");
-            h2statement.executeUpdate("alter table USERINFO ADD emailid varchar(30)");
+            h2statement.executeUpdate("alter table USERINFO ADD emailid varchar(50)");
 
             //friend list table
             h2statement.executeUpdate("create table FRIENDLIST");
@@ -72,7 +72,7 @@ public class ConnectH2Database {
             h2statement.executeUpdate("alter table FRIENDLIST add gender varchar (12)");
             h2statement.executeUpdate("alter table FRIENDLIST add priority int (1000)");
             h2statement.executeUpdate("alter table FRIENDLIST add mobileno varchar (10)");
-            h2statement.executeUpdate("alter table FRIENDLIST add emailid varchar (30)");
+            h2statement.executeUpdate("alter table FRIENDLIST add emailid varchar (50)");
 
         } catch (SQLException e) {
             e.printStackTrace();
