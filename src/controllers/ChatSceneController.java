@@ -16,6 +16,10 @@ import source.PatternValidation;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 import static source.GlobleVariables.*;
@@ -94,7 +98,9 @@ public class ChatSceneController implements Initializable {
     }
 
     private void addmsgtoscene() {
-        AnchorPane v = msgbox(msgtextfield.getText(), 's', "time date");
+        String timestamp = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm aa"));
+        String datestamp = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/mm/yyyy"));
+        AnchorPane v = msgbox(msgtextfield.getText(), 's', timestamp, datestamp);
         msgcontainer.getChildren().add(v);
     }
 
@@ -143,9 +149,9 @@ public class ChatSceneController implements Initializable {
         }
     }
 
-    private AnchorPane msgbox(String msg, char senderorreciver, String timedate){
+    private AnchorPane msgbox(String msg, char senderorreciver, String timestamp, String datestamp){
         Text msgtext = new Text(msg);
-        Text timedatatext = new Text("time date");
+        Label timedatatext = new Label("time date");
         VBox v = new VBox(msgtext, timedatatext);
         v.setMaxWidth(1.79);
         v.setPrefWidth(555);

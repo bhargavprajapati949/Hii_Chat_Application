@@ -399,7 +399,7 @@ public class SignupSceneController implements Initializable {
     }
 
     private void createusermsgtableonserver() throws SQLException {
-        String query = "create table " + usermsgtablename + "(sdate varchar (8), stime varchar (8), senderusername varchar (30), receiverusername varchar (30), msg varchar (21000), readconform int (2))";
+        String query = "CREATE TABLE " + usermsgtablename + " ( msgindex INT(255) UNSIGNED NOT NULL AUTO_INCREMENT , sdate varchar (8), stime varchar (8), senderusername varchar (30), receiverusername varchar (30), msg varchar (21000), readconform int (2), PRIMARY KEY (msgindex))";
         sqlstatement.executeUpdate(query);
     }
 }

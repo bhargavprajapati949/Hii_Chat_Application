@@ -140,7 +140,7 @@ public class SigninSceneController implements Initializable {
         try {
             ResultSet rs = sqlstatement.executeQuery(query);
             while(rs.next()){
-                query = "create table MSG_" + rs.getString("fusername") + " (sdate varchar (8), stime varchar (8), senderusername varchar (30), receiverusername varchar (30), msg varchar (21000), readconform int (2))";
+                query = "create table MSG_" + rs.getString("fusername") + " ( msgindex INT(255) UNSIGNED NOT NULL AUTO_INCREMENT , sdate varchar (8), stime varchar (8), senderusername varchar (30), receiverusername varchar (30), msg varchar (21000), readconform int (2), PRIMARY KEY (msgindex))";
                 h2statement.executeUpdate(query);
             }
         } catch (SQLException e) {
@@ -151,6 +151,7 @@ public class SigninSceneController implements Initializable {
 
     public void setlablesignout(){
         errorlabel.setText("Successfully Sign Out");
+        errorlabel.setStyle("-fx-text-fill: green");
     }
 
     public void clearall(){
