@@ -1,5 +1,6 @@
 package controllers;
 
+import Observer.DatabaseObserver;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -46,12 +47,14 @@ public class SigninSceneController implements Initializable {
     @FXML
     public void btnsignupclicked(){
         errorlabel.setText("");
+        clearall();
         primaryStage.setScene(signupScene);
     }
 
     @FXML
     public void forgetpasswordclicked() {
         errorlabel.setText("");
+        clearall();
         primaryStage.setScene(forgetPasswordScene);
     }
 
@@ -79,8 +82,12 @@ public class SigninSceneController implements Initializable {
                 fetchpersonaldetail(rs);
                 fetchfriendlist();
                 createmsgforeachfriend();
+                createpandingmsgtable();
                 friendlistSceneController.reloadfriendlist();
                 islogin = true;
+                DatabaseObserver dbobserver = new DatabaseObserver();
+                clearall();
+                friendlistSceneController.updatenotificationinfo();
                 primaryStage.setScene(friendlistScene);
             }
         } catch (SQLException e) {
@@ -140,7 +147,7 @@ public class SigninSceneController implements Initializable {
         try {
             ResultSet rs = sqlstatement.executeQuery(query);
             while(rs.next()){
-                query = "create table MSG_" + rs.getString("fusername") + " ( msgindex INT(255) UNSIGNED NOT NULL AUTO_INCREMENT , sdate varchar (8), stime varchar (8), senderusername varchar (30), receiverusername varchar (30), msg varchar (21000), readconform int (2), PRIMARY KEY (msgindex))";
+                query = "create table MSG_" + rs.getString("fusername") + " ( msgindex INT(255) UNSIGNED NOT NULL AUTO_INCREMENT , stime varchar (8), sdate varchar (8), senderusername varchar (30), receiverusername varchar (30), msg varchar (21000), sendconform int (2), PRIMARY KEY (msgindex))";
                 h2statement.executeUpdate(query);
             }
         } catch (SQLException e) {
@@ -158,5 +165,15 @@ public class SigninSceneController implements Initializable {
         errorlabel.setText("");
         usernamefield.setText("");
         passwordfield.setText("");
+    }
+
+    void createpandingmsgtable(){
+        String query = "create table pandingmsg (stime varchar (8), sdate varchar (8), senderusername varchar (30), receiverusername varchar (30), msg varchar (21000), priority INT (255))";
+        try {
+            h2statement.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            //todo handle sqlexception
+        }
     }
 }

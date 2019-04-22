@@ -34,9 +34,11 @@ public class ProfileSceneController{
     @FXML
     public void btnbackclicked(){
         if(myusername.equals(labelusername.getText())){
+            settingSceneController.updatenotificationinfo();
             primaryStage.setScene(settingScene);
         }
         else {
+            chatSceneController.updatenotificationinfo();
             primaryStage.setScene(chatScene);
         }
     }
@@ -77,5 +79,9 @@ public class ProfileSceneController{
             e.printStackTrace();
             //todo handle sqlexception
         }
+    }
+
+    public void updatenotificationinfo(){
+        notificationinfo.setText(notificationtext);
     }
 }

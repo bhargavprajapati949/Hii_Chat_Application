@@ -123,7 +123,6 @@ public class ForgetPasswordSceneController implements Initializable {
                             sqlstatement.execute(query);
                             errornotification.setStyle("");
                             clearall();
-                            signinSceneController.clearall();
                             primaryStage.setScene(signinScene);
                         }
                     }
@@ -138,7 +137,6 @@ public class ForgetPasswordSceneController implements Initializable {
     @FXML
     void signinlinkclicked(){
         clearall();
-        signinSceneController.clearall();
         primaryStage.setScene(signinScene);
     }
 

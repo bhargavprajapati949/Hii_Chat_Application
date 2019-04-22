@@ -32,6 +32,7 @@ public class SettingSceneController implements Initializable {
 
     @FXML
     void btnbackclicked(){
+        friendlistSceneController.updatenotificationinfo();
         primaryStage.setScene(friendlistScene);
     }
 
@@ -41,6 +42,7 @@ public class SettingSceneController implements Initializable {
             @Override
             public void handle(MouseEvent event) {
                 profileSceneController.fatchpersonaldetail();
+                profileSceneController.updatenotificationinfo();
                 primaryStage.setScene(profileScene);
             }
         });
@@ -56,6 +58,10 @@ public class SettingSceneController implements Initializable {
                 }
             }
         });
+    }
+
+    public void updatenotificationinfo(){
+        notificationinfo.setText(notificationtext);
     }
 }
 

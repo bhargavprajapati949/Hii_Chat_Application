@@ -90,6 +90,7 @@ public class FriendListSceneController implements Initializable {
         settingmenuitem.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                settingSceneController.updatenotificationinfo();
                 primaryStage.setScene(settingScene);
             }
         });
@@ -114,6 +115,9 @@ public class FriendListSceneController implements Initializable {
                         h2statement2.executeUpdate(query);
                     }
 
+                    query = "drop table pandingmsg";
+                    h2statement.executeUpdate(query);
+
                     query = "delete from FRIENDLIST";
                     h2statement.executeUpdate(query);
                     signinSceneController.clearall();
@@ -129,7 +133,7 @@ public class FriendListSceneController implements Initializable {
     }
 
 
-    void reloadfriendlist(){
+    public void reloadfriendlist(){
         friendnamevbox.getChildren().clear();
         try {
             ResultSet friendlist = h2statement.executeQuery("select * from FRIENDLIST");
@@ -161,6 +165,7 @@ public class FriendListSceneController implements Initializable {
                         currentfriendname = fname.getText();
                         currentfriendusername = fname.getId();
                         chatSceneController.loadchatscene();
+                        chatSceneController.updatenotificationinfo();
                         primaryStage.setScene(chatScene);
                     }
                 });
@@ -169,6 +174,10 @@ public class FriendListSceneController implements Initializable {
             e.printStackTrace();
             //todo handle exception sql query problem
         }
+    }
+
+    public void updatenotificationinfo(){
+        notificationinfo.setText(notificationtext);
     }
 
 }

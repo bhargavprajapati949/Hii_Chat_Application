@@ -18,8 +18,6 @@ import static source.GlobleVariables.*;
 
 public class SignupSceneController implements Initializable {
 
-    Boolean allVarified = false;
-
     @FXML
     Button btnsignup;
 
@@ -333,7 +331,6 @@ public class SignupSceneController implements Initializable {
     @FXML
     public void signinlinkclicked() {
         clearall();
-        signinSceneController.clearall();
         primaryStage.setScene(signinScene);
     }
 
@@ -373,7 +370,6 @@ public class SignupSceneController implements Initializable {
                     notificationinfo.setText(notificationtext);
                 }
                 clearall();
-                signinSceneController.clearall();
                 primaryStage.setScene(signinScene);
             }
         }
@@ -399,7 +395,7 @@ public class SignupSceneController implements Initializable {
     }
 
     private void createusermsgtableonserver() throws SQLException {
-        String query = "CREATE TABLE " + usermsgtablename + " ( msgindex INT(255) UNSIGNED NOT NULL AUTO_INCREMENT , sdate varchar (8), stime varchar (8), senderusername varchar (30), receiverusername varchar (30), msg varchar (21000), readconform int (2), PRIMARY KEY (msgindex))";
+        String query = "CREATE TABLE " + usermsgtablename + " ( msgindex INT(255) UNSIGNED NOT NULL AUTO_INCREMENT , code INT(2), sdate varchar (8), stime varchar (8), senderusername varchar (30), receiverusername varchar (30), msg varchar (21000), fname varchar(30), fusername(30), gender varchar(12), priority INT(255), mobileno varchar(10), emailid varchar(50), PRIMARY KEY (msgindex))";
         sqlstatement.executeUpdate(query);
     }
 }

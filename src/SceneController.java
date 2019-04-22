@@ -1,3 +1,5 @@
+import Observer.DatabaseObserver;
+import Observer.InternetObserver;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -17,6 +19,8 @@ public class SceneController extends Application {
 
     @Override
     public void init() throws IOException {
+
+        InternetObserver io = new InternetObserver();
 
         //connect to database
 
@@ -50,6 +54,8 @@ public class SceneController extends Application {
 
         //notify to preloader
         notifyPreloader(new ProgressNotification("Connecting to Server...")) ;
+
+
 
         //connect to server
         sqlcon = ConnectMysqlDatabase.connect();
@@ -140,12 +146,12 @@ public class SceneController extends Application {
         }
         else {
             if(!islogin){
-
                 primaryStage.setScene(welcomeScene);
             }
             else {
                 primaryStage.setMinWidth(400);
                 primaryStage.setMinHeight(500);
+                DatabaseObserver dbobserver = new DatabaseObserver();
                 primaryStage.setScene(friendlistScene);
             }
             primaryStage.show();

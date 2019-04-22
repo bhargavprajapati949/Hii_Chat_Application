@@ -89,7 +89,7 @@ public class AddFriendSceneController implements Initializable {
             varifyusername();
         }
         else {
-            if (!IsConnectedToInternet.check()) {
+            if (!isconnectedtointernet) {
                 notificationtext = "You are offline.";
                 errorlabel.setText(notificationtext);
             } else {
@@ -122,7 +122,7 @@ public class AddFriendSceneController implements Initializable {
                         query1 += rs.getString("emailid") + "')";
                         h2statement.executeUpdate(query1);
 
-                        query = "create table MSG_" + rs.getString("username") + " ( msgindex INT(255) UNSIGNED NOT NULL AUTO_INCREMENT , sdate varchar (8), stime varchar (8), senderusername varchar (30), receiverusername varchar (30), msg varchar (21000), readconform int (2), PRIMARY KEY (msgindex))";
+                        query = "create table MSG_" + rs.getString("username") + " ( msgindex INT(255) UNSIGNED NOT NULL AUTO_INCREMENT , stime varchar (8), sdate varchar (8), senderusername varchar (30), receiverusername varchar (30), msg varchar (21000), sendconform int (2), PRIMARY KEY (msgindex))";
 
                         h2statement.executeUpdate(query);
 

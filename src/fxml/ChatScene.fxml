@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
@@ -10,8 +11,14 @@
    <center>
       <ScrollPane minHeight="400.0" minWidth="-Infinity" prefHeight="535.0" prefWidth="400.0" BorderPane.alignment="CENTER">
          <content>
-            <VBox fx:id="msgcontainer" fillWidth="false" minWidth="-Infinity" prefWidth="398.0" style="-fx-background-color: #aaaaaa;" />
+            <VBox fx:id="msgcontainer" fillWidth="false" minWidth="-Infinity" prefWidth="398.0" spacing="13.0" style="-fx-background-color: #aaaaaa;">
+               <padding>
+                  <Insets top="13.0" />
+               </padding></VBox>
          </content>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
       </ScrollPane>
    </center>
    <top>

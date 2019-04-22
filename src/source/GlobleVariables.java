@@ -10,6 +10,7 @@ import java.sql.Statement;
 public class GlobleVariables {
 
     public static boolean islogin;
+    public static boolean isconnectedtointernet = false;
 
     public static Connection h2con;
     public static Connection sqlcon;

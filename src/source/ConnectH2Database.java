@@ -55,7 +55,7 @@ public class ConnectH2Database {
             //creating fields and initializing it.
 
             //login conformation
-            h2statement.executeUpdate("alter table USERINFO ADD islogin INT");
+            h2statement.executeUpdate("alter table USERINFO ADD islogin INT (2)");
             h2statement.executeUpdate("insert into USERINFO(islogin) values ( 0 )");
 
             //Personal Information
