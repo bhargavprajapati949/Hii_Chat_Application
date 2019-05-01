@@ -2,6 +2,7 @@ package controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 
 import static source.GlobleVariables.*;
 
@@ -11,8 +12,17 @@ public class WelcomeSceneController {
     Button btngetstarted;
 
     @FXML
+    Label btnclose;
+
+    @FXML
     private void clickedgetstarted() {
         primaryStage.setScene(signinScene);
+    }
+
+    @FXML
+    void btncloseclicked(){
+       // io.stop();
+        System.exit(0);
     }
 
 }

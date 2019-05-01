@@ -3,7 +3,9 @@ import Observer.InternetObserver;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import source.*;
 
 import java.io.IOException;
@@ -20,7 +22,7 @@ public class SceneController extends Application {
     @Override
     public void init() throws IOException {
 
-        InternetObserver io = new InternetObserver();
+        io = new InternetObserver();
 
         //connect to database
 
@@ -104,7 +106,7 @@ public class SceneController extends Application {
         //load scene
 
         try {
-            FXMLLoader friendlistLoader = new FXMLLoader(getClass().getResource("fxml/FriendlistScene.fxml"));
+            FXMLLoader friendlistLoader = new FXMLLoader(getClass().getResource("fxml/FriendListScene.fxml"));
             FXMLLoader chatLoader = new FXMLLoader(getClass().getResource("fxml/ChatScene.fxml"));
             FXMLLoader settingLoader = new FXMLLoader(getClass().getResource("fxml/SettingScene.fxml"));
             FXMLLoader profileLoader = new FXMLLoader(getClass().getResource("fxml/ProfileScene.fxml"));
@@ -134,6 +136,8 @@ public class SceneController extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         primaryStage = stage;
+        primaryStage.setResizable(false);
+        primaryStage.initStyle(StageStyle.UNDECORATED);
 
         errorMsgStage = new Stage();
         FXMLLoader errorMsgLoader = new FXMLLoader(getClass().getResource("fxml/ErrorMsgScene.fxml"));
@@ -151,7 +155,11 @@ public class SceneController extends Application {
             else {
                 primaryStage.setMinWidth(400);
                 primaryStage.setMinHeight(500);
-                DatabaseObserver dbobserver = new DatabaseObserver();
+                primaryStage.setWidth(400);
+                primaryStage.setHeight(625);
+                primaryStage.setX(Screen.getPrimary().getVisualBounds().getWidth() - primaryStage.getWidth());
+                primaryStage.setY(Screen.getPrimary().getVisualBounds().getHeight() - primaryStage.getHeight());
+                dbobserver = new DatabaseObserver();
                 primaryStage.setScene(friendlistScene);
             }
             primaryStage.show();

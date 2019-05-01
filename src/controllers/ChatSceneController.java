@@ -7,7 +7,10 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -33,7 +36,7 @@ public class ChatSceneController implements Initializable {
     HBox title;
 
     @FXML
-    Button btnback;
+    ImageView btnback;
 
     @FXML
     Label friendname;
@@ -42,16 +45,22 @@ public class ChatSceneController implements Initializable {
     MenuButton dropdownmenu;
 
     @FXML
+    ScrollPane scrollpane;
+
+    @FXML
     public VBox msgcontainer;
 
     @FXML
     TextField msgtextfield;
 
     @FXML
-    Button btnsendmsg;
+    ImageView btnsendmsg;
 
     @FXML
     Label notificationinfo;
+
+    @FXML
+    VBox bottamvbox;
 
     MenuItem clearchat;
 
@@ -64,10 +73,12 @@ public class ChatSceneController implements Initializable {
     @FXML
     void btnsendmsgclicked(){
         if(!PatternValidation.isnull(msgtextfield.getText())){
+            String timestamp = LocalTime.now().format(DateTimeFormatter.ofPattern("HHmma"));
+            String datestamp = LocalDate.now().format(DateTimeFormatter.ofPattern("ddMMyyyy"));
             if(!isconnectedtointernet){
                 try {
-                    savemsgtolocaldb(0);
-                    addmsgtosceneandsavetopanding();
+                    savemsgtolocaldb(0, timestamp, datestamp);
+                    addmsgtosceneandsavetopanding(timestamp, datestamp);
                     msgtextfield.setText("");
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -76,9 +87,9 @@ public class ChatSceneController implements Initializable {
             }
             else {
                 try {
-                    savemsgtoserverdb();
-                    savemsgtolocaldb(1);
-                    addmsgtoscene();
+                    savemsgtoserverdb(timestamp, datestamp);
+                    savemsgtolocaldb(1, timestamp, datestamp);
+                    addmsgtoscene(timestamp, datestamp);
                     msgtextfield.setText("");
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -100,9 +111,7 @@ public class ChatSceneController implements Initializable {
     }
 
     @SuppressWarnings("Duplicates")
-    private void savemsgtolocaldb(int flag_sendconform) throws SQLException {
-        String timestamp = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm a"));
-        String datestamp = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+    private void savemsgtolocaldb(int flag_sendconform, String timestamp, String datestamp) throws SQLException {
         String msg = msgtextfield.getText();
         String query = "insert into MSG_" + currentfriendusername + " (stime, sdate, senderusername,  receiverusername, msg, sendconform) ";
         query += "values ('" + timestamp + "', '" + datestamp + "', '" + myusername + "', '" + currentfriendusername + "', '" + msg + "', " + flag_sendconform + ")";
@@ -110,19 +119,18 @@ public class ChatSceneController implements Initializable {
 
     }
 
-    private void addmsgtoscene() {
+    private void addmsgtoscene(String timestamp, String datestamp) {
         //todo addmsgtoscene not  complite
-        String timestamp = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm a"));
-        String datestamp = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+
         HBox v = msgbox(msgtextfield.getText(), 's', timestamp, datestamp, 1);
         msgcontainer.getChildren().add(v);
+        scrollpane.setVvalue(scrollpane.getVmax());
     }
 
-    private void addmsgtosceneandsavetopanding(){
-        String timestamp = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm a"));
-        String datestamp = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+    private void addmsgtosceneandsavetopanding(String timestamp, String datestamp){
         HBox v = msgbox(msgtextfield.getText(), 's', timestamp, datestamp, 0);
         msgcontainer.getChildren().add(v);
+        scrollpane.setVvalue(scrollpane.getVmax());
 
         String query = "insert into pandingmsg (stime, sdate, senderusername, receiverusername, msg) values (" + timestamp + ", " + datestamp + ", " + myusername + ", " + currentfriendusername + ", " + msgtextfield.getText() + ")";
         try {
@@ -135,19 +143,24 @@ public class ChatSceneController implements Initializable {
     }
 
     @SuppressWarnings("Duplicates")
-    private void savemsgtoserverdb() throws SQLException {
+    private void savemsgtoserverdb(String timestamp, String datestamp) throws SQLException {
         String msg = msgtextfield.getText();
-        String query = "insert into MSG_" + currentfriendusername + " (stime, sdate, senderusername,  receiverusername, msg) ";
-        query += "values ('" + myusername + "', '" + currentfriendusername + "', '" + msg + "')";
+
+        String query = "insert into MSG_" + currentfriendusername + " (code, stime, sdate, senderusername,  receiverusername, msg) values ( 1 , '" + timestamp + "', '" + datestamp + "', '" + myusername + "', '" + currentfriendusername + "', '" + msg + "')";
         sqlstatement.executeUpdate(query);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //dropdownmenu.getItems().addAll();
+
         title.setHgrow(friendname, Priority.ALWAYS);
         clearchat = new MenuItem("Clear Chat");
         dropdownmenu.getItems().addAll(clearchat);
+
+        msgcontainer.setStyle("-fx-background-color: transparent");
+
+        //scrollpane.setStyle("-fx-background-image: url('../images/backgroundVertical.jpeg'); -fx-background-repeat: stretch; -fx-background-size: 400 700; -fx-background-position: center center;");
+        //bottamvbox.setStyle("-fx-background-image: url('../images/backgroundVertical.jpeg')");
 
         clearchat.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -164,8 +177,15 @@ public class ChatSceneController implements Initializable {
         });
     }
 
+    @FXML
+    void keypreshed(KeyEvent event){
+        if(event.getCode().equals(KeyCode.ENTER)){
+            btnsendmsgclicked();
+        }
+    }
 
     public void loadchatscene(){
+        msgcontainer.getChildren().clear();
         friendname.setText(currentfriendname);
         String friendmsgtablename = "MSG_" + currentfriendusername;
         try {
@@ -186,25 +206,23 @@ public class ChatSceneController implements Initializable {
             e.printStackTrace();
             //todo handle sql exception
         }
-    }
-
-    public void addnewmsg(){
-
+        scrollpane.setVvalue(scrollpane.getVmax());
     }
 
     public HBox msgbox(String msg, char sendorrecive, String timestamp, String datestamp, int flag_sendconform){
         Text msgtext = new Text(msg + "\n");
-        msgtext.setFill(Color.WHITE);
+        msgtext.setFill(Color.BLACK);
         msgtext.setStyle("-fx-font-size: 14px; -fx-font-weight: 300;");
         msgtext.setStrokeType(StrokeType.OUTSIDE);
         //msgtext.setWrappingWidth(300);
-        msgtext.setStyle("-fx-background-color: blue");
+
 
         TextFlow msgtextflow = new TextFlow();
         msgtextflow.getChildren().add(msgtext);
         msgtextflow.setMaxWidth(300);
 
-
+        timestamp = timestamp.substring(0, 2) + ":" + timestamp.substring(2, 4) + ":" + timestamp.substring(4, 6);
+        datestamp = datestamp.substring(0, 2) + "/" + datestamp.substring(2, 4) + "/" + datestamp.substring(4,8) ;
         Text timedate = new Text(datestamp + " " + timestamp);
         timedate.setFill(Color.WHITE);
         timedate.setStyle("-fx-font-size: 10px; -fx-font-weight: 300;");
@@ -219,20 +237,23 @@ public class ChatSceneController implements Initializable {
                 //for msg sucssessfully send
                 sendcon = new ImageView("images/doubletick.png");
             }
+            sendcon.setFitHeight(17);
+            sendcon.setFitWidth(17);
+            sendcon.setPickOnBounds(true);
+            sendcon.setPreserveRatio(true);
         }
-        sendcon.setFitHeight(17);
-        sendcon.setFitWidth(17);
-        sendcon.setPickOnBounds(true);
-        sendcon.setPreserveRatio(true);
+
 
         HBox statusline = new HBox(5);
         statusline.setAlignment(Pos.CENTER_RIGHT);
         statusline.setPrefHeight(17);
-        statusline.getChildren().addAll(timedate, sendcon);
-        statusline.setStyle("-fx-background-color: red");
+        statusline.getChildren().add(timedate);
+        if(sendorrecive == 's'){
+            statusline.getChildren().add(sendcon);
+        }
+        statusline.setStyle("-fx-background-color: transparent");
 
         VBox msg_container = new VBox(msgtextflow, statusline);
-        msg_container.setStyle("-fx-background-color: green");
 
         HBox hbox = new HBox();
         hbox.getChildren().addAll(msg_container);

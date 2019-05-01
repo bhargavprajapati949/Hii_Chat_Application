@@ -1,17 +1,22 @@
 package controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 
+
+import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
 import static source.GlobleVariables.*;
 
-public class ProfileSceneController{
+public class ProfileSceneController implements Initializable {
     @FXML
-    Button btnback;
+    ImageView btnback;
 
     @FXML
     Label labelname;
@@ -83,5 +88,10 @@ public class ProfileSceneController{
 
     public void updatenotificationinfo(){
         notificationinfo.setText(notificationtext);
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
     }
 }

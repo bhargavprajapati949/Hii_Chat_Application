@@ -32,7 +32,7 @@ public class InternetObserver extends Thread{
                 updatetoallscene();
             }
             try {
-                sleep(5000);
+                sleep(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
                 //todo thread exception
@@ -53,12 +53,19 @@ public class InternetObserver extends Thread{
         Statement h2statement2;
         try {
             h2statement2 = h2con.createStatement();
-            String savemsgtoserver_query = "insert into MSG_" + rs.getString("receiverusername").toUpperCase() + " (stime, sdate, senderusername, receiverusername, msg) values (" + rs.getString("stime") + ", " + rs.getString("sdate") + ", " + rs.getString("senderusername") + ", " + rs.getString("receiverusername") + ", " + rs.getString("msg") + ")";
-            String setsendconform_query = "update MSG_" + rs.getString("receiverusername") + " ";
+            String savemsgtoserver_query;
+            String setsendconform_query;
+            String deletemsgfrompandinglist;
+
             rs = h2statement.executeQuery(query);
             while(rs.next()){
+                savemsgtoserver_query = "insert into MSG_" + rs.getString("receiverusername").toUpperCase() + " (code, stime, sdate, senderusername, receiverusername, msg) values (1, " + rs.getString("stime") + ", " + rs.getString("sdate") + ", " + rs.getString("senderusername") + ", " + rs.getString("receiverusername") + ", " + rs.getString("msg") + ")";
+                setsendconform_query = "update MSG_" + rs.getString("receiverusername") + " set sendconform=1 where msg=" + rs.getString("msg");
+                deletemsgfrompandinglist = "delete from pandignmsg where msg=" + rs.getString("msg");
+
                 sqlstatement.executeUpdate(savemsgtoserver_query);
                 h2statement2.executeUpdate(setsendconform_query);
+                h2statement2.executeUpdate(deletemsgfrompandinglist);
             }
         } catch (SQLException e) {
             e.printStackTrace();

@@ -10,8 +10,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,7 +21,7 @@ import java.util.ResourceBundle;
 public class SettingSceneController implements Initializable {
 
     @FXML
-    Button btnback;
+    ImageView btnback;
 
     @FXML
     AnchorPane myprofiletab;
@@ -38,6 +40,7 @@ public class SettingSceneController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         myprofiletab.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {

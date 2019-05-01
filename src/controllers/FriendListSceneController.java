@@ -17,6 +17,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -40,9 +41,11 @@ public class FriendListSceneController implements Initializable {
     MenuButton dropdownmenu;
 
     MenuItem addfriendmenuitem;
+    MenuItem minimizemenuitem;
+    MenuItem closemenuitem;
     MenuItem settingmenuitem;
     MenuItem signoutmenuitem;
-    MenuItem minimizemenuitem;
+
 
     @FXML
     VBox friendnamevbox;
@@ -55,10 +58,12 @@ public class FriendListSceneController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         addfriendmenuitem = new MenuItem("Add Friend");
         minimizemenuitem = new MenuItem("Minimize app");
+        closemenuitem = new MenuItem("Close app");
         settingmenuitem  = new MenuItem("Setting");
         signoutmenuitem = new MenuItem("Sign Out");
 
-        dropdownmenu.getItems().addAll(addfriendmenuitem, minimizemenuitem, settingmenuitem, signoutmenuitem);
+
+        dropdownmenu.getItems().addAll(addfriendmenuitem, minimizemenuitem, closemenuitem, settingmenuitem, signoutmenuitem);
         title.setHgrow(titlelabel, Priority.ALWAYS);
 
         reloadfriendlist();
@@ -84,6 +89,13 @@ public class FriendListSceneController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 primaryStage.setIconified(true);
+            }
+        });
+
+        closemenuitem.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.exit(0);
             }
         });
 
@@ -122,6 +134,11 @@ public class FriendListSceneController implements Initializable {
                     h2statement.executeUpdate(query);
                     signinSceneController.clearall();
                     signinSceneController.setlablesignout();
+                    dbobserver.stop();
+                    primaryStage.setWidth(1000);
+                    primaryStage.setHeight(700);
+                    primaryStage.setX((Screen.getPrimary().getVisualBounds().getWidth() - primaryStage.getWidth())/2);
+                    primaryStage.setY((Screen.getPrimary().getVisualBounds().getHeight() - primaryStage.getHeight())/2);
                     primaryStage.setScene(signinScene);
                 } catch (SQLException e) {
                     e.printStackTrace();

@@ -4,6 +4,7 @@ import Observer.DatabaseObserver;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.stage.Screen;
 import source.ErrorMsg;
 
 import java.net.URL;
@@ -35,6 +36,9 @@ public class SigninSceneController implements Initializable {
 
     @FXML
     Label errorlabel;
+
+    @FXML
+    Label btnclose;
 
     String userfriendlisttablename;
     String usermsgtablename;
@@ -85,9 +89,15 @@ public class SigninSceneController implements Initializable {
                 createpandingmsgtable();
                 friendlistSceneController.reloadfriendlist();
                 islogin = true;
-                DatabaseObserver dbobserver = new DatabaseObserver();
+                dbobserver = new DatabaseObserver();
                 clearall();
                 friendlistSceneController.updatenotificationinfo();
+                primaryStage.setMinWidth(400);
+                primaryStage.setMinHeight(500);
+                primaryStage.setWidth(400);
+                primaryStage.setHeight(625);
+                primaryStage.setX(Screen.getPrimary().getVisualBounds().getWidth() - primaryStage.getWidth());
+                primaryStage.setY(Screen.getPrimary().getVisualBounds().getHeight() - primaryStage.getHeight());
                 primaryStage.setScene(friendlistScene);
             }
         } catch (SQLException e) {
@@ -175,5 +185,11 @@ public class SigninSceneController implements Initializable {
             e.printStackTrace();
             //todo handle sqlexception
         }
+    }
+
+    @FXML
+    void btncloseclicked(){
+        //io.stop();
+        System.exit(0);
     }
 }

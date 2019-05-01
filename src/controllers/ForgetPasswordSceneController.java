@@ -48,6 +48,9 @@ public class ForgetPasswordSceneController implements Initializable {
     @FXML
     Hyperlink signinlink;
 
+    @FXML
+    Label btnclose;
+
     Boolean vldusername = false;
     Boolean vldsecque = false;
     Boolean vldsecqueans = false;
@@ -203,5 +206,11 @@ public class ForgetPasswordSceneController implements Initializable {
         passwordfield.setText("");
         conpasswordlabel.setText("");
         conpasswordfield.setText("");
+    }
+
+    @FXML
+    void btncloseclicked(){
+        //io.stop();
+        System.exit(0);
     }
 }

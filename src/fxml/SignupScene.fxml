@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #dedede;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SignupSceneController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #dedede; -fx-border-radius: 20; -fx-background-radius: 20;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SignupSceneController">
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="590.0" layoutY="29.0" prefHeight="45.0" prefWidth="206.0" text="Sign Up">
          <font>
@@ -43,45 +43,69 @@
                      <children>
                         <Label text="Name">
                            <font>
-                              <Font name="Century" size="13.0" />
+                              <Font name="Century" size="16.0" />
                            </font>
+                           <GridPane.margin>
+                              <Insets bottom="12.0" left="10.0" />
+                           </GridPane.margin>
                         </Label>
                         <Label text="Username" GridPane.rowIndex="1">
                            <font>
-                              <Font name="Century" size="13.0" />
+                              <Font name="Century" size="16.0" />
                            </font>
+                           <GridPane.margin>
+                              <Insets bottom="12.0" left="10.0" />
+                           </GridPane.margin>
                         </Label>
                         <Label text="Gender" GridPane.rowIndex="2">
                            <font>
-                              <Font name="Century" size="13.0" />
+                              <Font name="Century" size="16.0" />
                            </font>
+                           <GridPane.margin>
+                              <Insets bottom="12.0" left="10.0" />
+                           </GridPane.margin>
                         </Label>
                         <Label text="Mobile No" GridPane.rowIndex="3">
                            <font>
-                              <Font name="Century" size="13.0" />
+                              <Font name="Century" size="16.0" />
                            </font>
+                           <GridPane.margin>
+                              <Insets bottom="12.0" left="10.0" />
+                           </GridPane.margin>
                         </Label>
                         <Label contentDisplay="TOP" text="Email Id" GridPane.rowIndex="4">
                            <font>
-                              <Font name="Century" size="13.0" />
+                              <Font name="Century" size="16.0" />
                            </font>
+                           <GridPane.margin>
+                              <Insets bottom="10.0" left="10.0" />
+                           </GridPane.margin>
                         </Label>
                         <Label prefHeight="21.0" prefWidth="71.0" text="Password" GridPane.rowIndex="5">
                            <font>
-                              <Font name="Century" size="13.0" />
+                              <Font name="Century" size="15.0" />
                            </font>
+                           <GridPane.margin>
+                              <Insets bottom="12.0" left="10.0" />
+                           </GridPane.margin>
                         </Label>
                         <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="100.0" GridPane.rowIndex="6">
                            <children>
                               <Label contentDisplay="TOP" prefHeight="21.0" prefWidth="78.0" text="Confirm">
                                  <font>
-                                    <Font name="Century" size="12.0" />
+                                    <Font name="Century" size="15.0" />
                                  </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="10.0" />
+                                 </VBox.margin>
                               </Label>
                               <Label contentDisplay="TOP" prefHeight="21.0" prefWidth="78.0" text="Password">
                                  <font>
-                                    <Font name="Century" size="12.0" />
+                                    <Font name="Century" size="15.0" />
                                  </font>
+                                 <VBox.margin>
+                                    <Insets bottom="15.0" left="10.0" />
+                                 </VBox.margin>
                               </Label>
                            </children>
                         </VBox>
@@ -89,20 +113,29 @@
                            <children>
                               <Label contentDisplay="TOP" prefHeight="35.0" prefWidth="119.0" text="Security">
                                  <font>
-                                    <Font name="Century" size="12.0" />
+                                    <Font name="Century" size="15.0" />
                                  </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="10.0" />
+                                 </VBox.margin>
                               </Label>
                               <Label prefHeight="35.0" prefWidth="119.0" text="Question">
                                  <font>
-                                    <Font name="Century" size="12.0" />
+                                    <Font name="Century" size="15.0" />
                                  </font>
+                                 <VBox.margin>
+                                    <Insets bottom="15.0" left="10.0" />
+                                 </VBox.margin>
                               </Label>
                            </children>
                         </VBox>
                         <Label prefHeight="21.0" prefWidth="71.0" text="Answer" GridPane.rowIndex="8">
                            <font>
-                              <Font name="Century" size="13.0" />
+                              <Font name="Century" size="16.0" />
                            </font>
+                           <GridPane.margin>
+                              <Insets bottom="12.0" left="10.0" />
+                           </GridPane.margin>
                         </Label>
                         <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="300.0" GridPane.columnIndex="1">
                            <children>
@@ -171,7 +204,7 @@
             </ScrollPane>
          </children>
       </AnchorPane>
-      <Button fx:id="btnsignup" layoutX="598.0" layoutY="604.0" mnemonicParsing="false" onAction="#btnsignupclicked" prefHeight="31.0" prefWidth="191.0" style="-fx-background-radius: 60; -fx-background-color: #c6c6c6; " text="SignUp">
+      <Button fx:id="btnsignup" layoutX="598.0" layoutY="604.0" mnemonicParsing="false" onAction="#btnsignupclicked" prefHeight="31.0" prefWidth="191.0" style="-fx-background-radius: 60;" text="SignUp">
          <font>
             <Font size="18.0" />
          </font>
@@ -184,5 +217,13 @@
          </image>
       </ImageView>
       <Label fx:id="notificationinfo" layoutX="25.0" layoutY="661.0" />
+      <Label fx:id="btnclose" layoutX="959.0" layoutY="10.0" onMouseClicked="#btncloseclicked" prefHeight="15.0" prefWidth="35.0" text=" X">
+         <font>
+            <Font name="Nirmala UI" size="27.0" />
+         </font>
+         <padding>
+            <Insets left="5.0" />
+         </padding>
+      </Label>
    </children>
 </AnchorPane>

@@ -1,5 +1,7 @@
 package source;
 
+import Observer.DatabaseObserver;
+import Observer.InternetObserver;
 import controllers.*;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -50,4 +52,7 @@ public class GlobleVariables {
 
     public static String currentfriendname;
     public static String currentfriendusername;
+
+    public static InternetObserver io;
+    public static DatabaseObserver dbobserver;
 }

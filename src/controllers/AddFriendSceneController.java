@@ -7,7 +7,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import source.IsConnectedToInternet;
 import source.PatternValidation;
 
 import java.net.URL;
@@ -90,7 +89,6 @@ public class AddFriendSceneController implements Initializable {
         }
         else {
             if (!isconnectedtointernet) {
-                notificationtext = "You are offline.";
                 errorlabel.setText(notificationtext);
             } else {
                 String query = "select * from USERINFO where username=";
@@ -99,6 +97,7 @@ public class AddFriendSceneController implements Initializable {
                     ResultSet rs = sqlstatement.executeQuery(query);
                     Statement sqlstatement1 = sqlcon.createStatement();
                     if (rs.next()) {
+                        // add friend to server
                         query = "insert into ";
                         query += "FRIENDLIST_" + myusername;
                         query += "(fname, fusername, gender, priority, mobileno, emailid) values (";
@@ -110,6 +109,7 @@ public class AddFriendSceneController implements Initializable {
                         query += rs.getString("emailid") + "\")";
                         sqlstatement1.executeUpdate(query);
 
+                        //add friend to local db
                         String query1;
                         query1 = "insert into ";
                         query1 += "FRIENDLIST";
@@ -122,9 +122,19 @@ public class AddFriendSceneController implements Initializable {
                         query1 += rs.getString("emailid") + "')";
                         h2statement.executeUpdate(query1);
 
+                        // create msg table for new friend in local db
                         query = "create table MSG_" + rs.getString("username") + " ( msgindex INT(255) UNSIGNED NOT NULL AUTO_INCREMENT , stime varchar (8), sdate varchar (8), senderusername varchar (30), receiverusername varchar (30), msg varchar (21000), sendconform int (2), PRIMARY KEY (msgindex))";
 
                         h2statement.executeUpdate(query);
+
+                        String friendmsgtablename = "MSG_" + rs.getString("username");
+                        query = "select * from USERINFO";
+                        rs = h2statement.executeQuery(query);
+                        rs.next();
+
+                        // send alert to new friend
+                        query = "insert into " + friendmsgtablename + "(code, fname, fusername, gender, mobileno, emailid) values ( 2, '" + rs.getString("name") + "', '" + myusername + "', '" + rs.getString("gender") + "', '" + rs.getString("mobileno") + "', '" + rs.getString("emailid") + "')";
+                        sqlstatement1.executeUpdate(query);
 
 
                         friendlistSceneController.reloadfriendlist();
