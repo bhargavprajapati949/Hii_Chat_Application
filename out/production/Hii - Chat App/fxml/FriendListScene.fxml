@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
-<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.text.*?>
-<?import javafx.geometry.Insets?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="mainscene" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="300.0" minWidth="-Infinity" prefHeight="625.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FriendListSceneController">
+<BorderPane fx:id="mainscene" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="300.0" minWidth="-Infinity" prefHeight="625.0" prefWidth="400.0" style="-fx-background-color: #dedede; -fx-background-radius: 10; -fx-border-color: #ababab;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FriendListSceneController">
    <bottom>
       <HBox prefHeight="15.0" prefWidth="570.0" BorderPane.alignment="CENTER">
          <children>
@@ -21,14 +20,18 @@
    <top>
       <HBox fx:id="title" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" prefWidth="400.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="titlelabel" contentDisplay="RIGHT" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="40.0" prefWidth="359.0" text="  Hii">
+            <Label fx:id="titlelabel" prefHeight="45.0" prefWidth="252.0" text="Hii">
                <font>
-                  <Font size="32.0" />
+                  <Font size="30.0" />
                </font>
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
             </Label>
             <MenuButton fx:id="dropdownmenu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="MenuButton">
-
-            </MenuButton>
+               <HBox.margin>
+                  <Insets left="315.0" />
+               </HBox.margin></MenuButton>
          </children>
       </HBox>
    </top>

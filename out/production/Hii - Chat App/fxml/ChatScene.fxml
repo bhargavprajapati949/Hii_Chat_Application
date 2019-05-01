@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.text.*?>
@@ -9,9 +10,9 @@
 
 <BorderPane fx:id="mainscene" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="450.0" minWidth="-Infinity" prefHeight="630.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ChatSceneController">
    <center>
-      <ScrollPane minHeight="400.0" minWidth="-Infinity" prefHeight="535.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+      <ScrollPane fx:id="scrollpane" maxWidth="-Infinity" minHeight="400.0" minWidth="-Infinity" prefHeight="535.0" prefWidth="400.0" vbarPolicy="NEVER" BorderPane.alignment="CENTER">
          <content>
-            <VBox fx:id="msgcontainer" fillWidth="false" minWidth="-Infinity" prefWidth="398.0" spacing="13.0" style="-fx-background-color: #aaaaaa;">
+            <VBox fx:id="msgcontainer" fillWidth="false" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="398.0" spacing="13.0">
                <padding>
                   <Insets top="13.0" />
                </padding></VBox>
@@ -24,26 +25,43 @@
    <top>
       <HBox fx:id="title" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" prefWidth="400.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnback" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnbackclicked" prefHeight="40.0" prefWidth="40.0" text="Button" />
-            <Label fx:id="friendname" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" onMouseClicked="#friendnamelabelclicked" prefHeight="40.0" text="Friend Name">
+            <ImageView fx:id="btnback" fitHeight="40.0" fitWidth="40.0" onMouseClicked="#btnbackclicked" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/btnback.png" />
+               </image>
+               <HBox.margin>
+                  <Insets right="15.0" />
+               </HBox.margin>
+            </ImageView>
+            <Label fx:id="friendname" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" onMouseClicked="#friendnamelabelclicked" prefHeight="45.0" prefWidth="220.0" text="Friend Name">
                <font>
                   <Font size="30.0" />
                </font>
+               <HBox.margin>
+                  <Insets right="60.0" />
+               </HBox.margin>
             </Label>
             <MenuButton fx:id="dropdownmenu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="MenuButton">
               <items>
               </items>
+               <HBox.margin>
+                  <Insets left="30.0" />
+               </HBox.margin>
             </MenuButton>
          </children>
       </HBox>
    </top>
    <bottom>
-      <VBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="55.0" prefWidth="560.0" BorderPane.alignment="CENTER">
+      <VBox fx:id="bottamvbox" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="55.0" prefWidth="560.0" BorderPane.alignment="CENTER">
          <children>
             <HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0">
                <children>
-                  <TextField fx:id="msgtextfield" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="40.0" prefWidth="360.0" />
-                  <Button fx:id="btnsendmsg" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnsendmsgclicked" prefHeight="40.0" prefWidth="40.0" text="Button" />
+                  <TextField fx:id="msgtextfield" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" onKeyPressed="#keypreshed" prefHeight="40.0" prefWidth="360.0" style="-fx-border-radius: 60; -fx-background-color: #dedede; -fx-background-radius: 60;" />
+                  <ImageView fx:id="btnsendmsg" fitHeight="40.0" fitWidth="40.0" onMouseClicked="#btnsendmsgclicked" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/btnsend.png" />
+                     </image>
+                  </ImageView>
                </children></HBox>
             <HBox prefHeight="15.0" prefWidth="400.0">
                <children>

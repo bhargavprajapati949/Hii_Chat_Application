@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
@@ -12,7 +13,11 @@
    <top>
       <HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" prefWidth="400.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnback" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnbackclicked" prefHeight="40.0" prefWidth="40.0" text="Button" />
+            <ImageView fx:id="btnback" fitHeight="40.0" fitWidth="40.0" onMouseClicked="#btnbackclicked" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/btnback.png" />
+               </image>
+            </ImageView>
             <Label text="Profile">
                <font>
                   <Font size="30.0" />
@@ -40,16 +45,19 @@
                      <children>
                         <Label text="Name">
                            <VBox.margin>
-                              <Insets left="10.0" />
+                              <Insets left="30.0" />
                            </VBox.margin>
                         </Label>
-                        <Label fx:id="labelname" text="Label">
+                        <Label fx:id="labelname" prefHeight="32.0" prefWidth="379.0" style="-fx-background-color: #d4d4d4; -fx-background-radius: 60; -fx-border-radius: 60; -fx-border-color: #ababab;" text="Label">
                            <font>
                               <Font size="22.0" />
                            </font>
                            <VBox.margin>
                               <Insets left="10.0" />
                            </VBox.margin>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
                         </Label>
                      </children>
                      <VBox.margin>
@@ -60,16 +68,19 @@
                      <children>
                         <Label text="Gender">
                            <VBox.margin>
-                              <Insets left="10.0" />
+                              <Insets left="30.0" />
                            </VBox.margin>
                         </Label>
-                        <Label fx:id="labelgender" text="Label">
+                        <Label fx:id="labelgender" prefHeight="32.0" prefWidth="376.0" style="-fx-background-color: #d4d4d4; -fx-background-radius: 60; -fx-border-color: #ababab; -fx-border-radius: 60;" text="Label">
                            <font>
                               <Font size="22.0" />
                            </font>
                            <VBox.margin>
                               <Insets left="10.0" />
                            </VBox.margin>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
                         </Label>
                      </children>
                   </VBox>
@@ -77,16 +88,19 @@
                      <children>
                         <Label text="Username">
                            <VBox.margin>
-                              <Insets left="10.0" />
+                              <Insets left="30.0" />
                            </VBox.margin>
                         </Label>
-                        <Label fx:id="labelusername" text="Label">
+                        <Label fx:id="labelusername" prefHeight="32.0" prefWidth="375.0" style="-fx-background-color: #d4d4d4; -fx-background-radius: 60; -fx-border-color: #ababab; -fx-border-radius: 60;" text="Label">
                            <font>
                               <Font size="22.0" />
                            </font>
                            <VBox.margin>
                               <Insets left="10.0" />
                            </VBox.margin>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
                         </Label>
                      </children>
                   </VBox>
@@ -94,33 +108,39 @@
                      <children>
                         <Label text="Mobile No">
                            <VBox.margin>
-                              <Insets left="10.0" />
+                              <Insets left="30.0" />
                            </VBox.margin>
                         </Label>
-                        <Label fx:id="labelmobileno" text="Label">
+                        <Label fx:id="labelmobileno" prefHeight="32.0" prefWidth="373.0" style="-fx-background-color: #d4d4d4; -fx-background-radius: 60; -fx-border-color: #ababab; -fx-border-radius: 60;" text="Label">
                            <font>
                               <Font size="22.0" />
                            </font>
                            <VBox.margin>
                               <Insets left="10.0" />
                            </VBox.margin>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
                         </Label>
                      </children>
                   </VBox>
                   <VBox prefHeight="58.0" prefWidth="397.0" spacing="2.0">
                      <children>
-                        <Label text="E mail Id">
+                        <Label text="E-mail ID">
                            <VBox.margin>
-                              <Insets left="10.0" />
+                              <Insets left="30.0" />
                            </VBox.margin>
                         </Label>
-                        <Label fx:id="labelemailid" text="Label">
+                        <Label fx:id="labelemailid" prefHeight="32.0" prefWidth="375.0" style="-fx-background-color: #d4d4d4; -fx-background-radius: 60; -fx-border-color: #ababab; -fx-border-radius: 60;" text="Label">
                            <font>
                               <Font size="22.0" />
                            </font>
                            <VBox.margin>
                               <Insets left="10.0" />
                            </VBox.margin>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
                         </Label>
                      </children>
                   </VBox>
