@@ -2,7 +2,8 @@ package source;
 
 import static source.GlobleVariables.*;
 
-import org.h2.jdbc.JdbcSQLException;
+import org.h2.jdbc
+        .JdbcSQLException;
 
 import java.sql.*;
 
