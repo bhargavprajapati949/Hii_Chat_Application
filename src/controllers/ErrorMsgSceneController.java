@@ -16,6 +16,7 @@ public class ErrorMsgSceneController {
 
     @FXML
     public void btnexitclicked(){
+        primaryStage.close();
         System.exit(0);
     }
 

@@ -1,0 +1,6 @@
+Create remote sql database USERINFO table
+
+create table USERINFO ( id int(100) PRIMARY KEY AUTO_INCREMENT , username varchar(30), name varchar(30), gender varchar(12), mobileno varchar(10), emailid varchar(50), password varchar(30), secque varchar(50), secqueans varchar(30));
+
+Remote database 
+db4free.net

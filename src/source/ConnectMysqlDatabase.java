@@ -16,8 +16,11 @@ public class ConnectMysqlDatabase {
 
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
-                sqlcon = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/k2HY7nUBqq", "k2HY7nUBqq", "3U3nSWhgkr");
+                sqlcon = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/hiichatapp", "hiichatappuser", "q1w2e3r4t5");
                 sqlstatement = sqlcon.createStatement();
+                if(sqlcon.getMetaData().getTables(null, null, "USERINFO", null).next() == false){
+                    sqlstatement.executeUpdate("create table USERINFO ( id int(100) PRIMARY KEY AUTO_INCREMENT , username varchar(30), name varchar(30), gender varchar(12), mobileno varchar(10), emailid varchar(50), password varchar(30), secque varchar(50), secqueans varchar(30));");
+                }
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
                 //TODO driver not fount error

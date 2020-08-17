@@ -95,6 +95,7 @@ public class FriendListSceneController implements Initializable {
         closemenuitem.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                primaryStage.close();
                 System.exit(0);
             }
         });

@@ -16,7 +16,7 @@ public class ConnectH2Database {
         //Connecting to database if exist
         try{
             Class.forName("org.h2.Driver");
-            h2con = DriverManager.getConnection("jdbc:h2:~/'Hii - Chat App'/database;IFEXISTS=TRUE");
+            h2con = DriverManager.getConnection("jdbc:h2:~/Hii - Chat App/database;IFEXISTS=TRUE");
             h2statement = h2con.createStatement();
             return h2con;
         }
@@ -28,6 +28,7 @@ public class ConnectH2Database {
         }
         catch (JdbcSQLException e){
         //throws exception when database is not exist
+            e.printStackTrace();
             h2con = createNewUserinfoDatabase();
         }
         catch (SQLException e) {
@@ -46,7 +47,7 @@ public class ConnectH2Database {
         Connection h2con = null;
 
         try {
-            h2con = DriverManager.getConnection("jdbc:h2:~/'Hii - Chat App'/database");
+            h2con = DriverManager.getConnection("jdbc:h2:~/Hii - Chat App/database");
             h2statement = h2con.createStatement();
 
             //creating table

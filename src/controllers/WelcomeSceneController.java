@@ -21,7 +21,7 @@ public class WelcomeSceneController {
 
     @FXML
     void btncloseclicked(){
-       // io.stop();
+        primaryStage.close();
         System.exit(0);
     }
 

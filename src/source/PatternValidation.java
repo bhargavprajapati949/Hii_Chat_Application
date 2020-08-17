@@ -1,7 +1,8 @@
 package source;
 
-import javafx.scene.control.ChoiceBox;
+import controllers.ErrorMsgSceneController;
 import javafx.scene.control.ComboBox;
+import static source.GlobleVariables.*;
 
 public class PatternValidation {
 
@@ -35,5 +36,9 @@ public class PatternValidation {
 
     public static boolean checkspace(String samplestr){
         return !samplestr.matches("^\\S+$");
+    }
+
+    public static boolean checkMsgLength(int len) {
+        return len < 10000;
     }
 }

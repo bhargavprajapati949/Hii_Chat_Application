@@ -145,6 +145,17 @@ public class SceneController extends Application {
         errorMsgSceneController = errorMsgLoader.getController();
         errorMsgStage.setScene(errorMsgScene);
 
+        primaryStage.setOnCloseRequest(e -> {
+            try {
+                sqlcon.close();
+                h2con.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                errormsg = "cannot close database";
+                ErrorMsg.showerror();
+            }
+        });
+
         if(iserror){
             ErrorMsg.showerror();
         }

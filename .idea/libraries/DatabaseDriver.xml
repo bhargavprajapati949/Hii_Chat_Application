@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="DatabaseDriver">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Library/h2-2018-03-18.zip!/" />
+      <root url="jar://$PROJECT_DIR$/Library/mysql-connector-java-8.0.15.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

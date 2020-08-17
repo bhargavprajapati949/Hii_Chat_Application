@@ -72,7 +72,7 @@ public class ChatSceneController implements Initializable {
 
     @FXML
     void btnsendmsgclicked(){
-        if(!PatternValidation.isnull(msgtextfield.getText())){
+        if(!PatternValidation.isnull(msgtextfield.getText()) && PatternValidation.checkMsgLength(msgtextfield.getText().length())){
             String timestamp = LocalTime.now().format(DateTimeFormatter.ofPattern("HHmma"));
             String datestamp = LocalDate.now().format(DateTimeFormatter.ofPattern("ddMMyyyy"));
             if(!isconnectedtointernet){
